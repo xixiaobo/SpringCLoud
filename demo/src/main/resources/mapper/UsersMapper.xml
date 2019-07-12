@@ -8,7 +8,7 @@
     </resultMap>
 
     <select id="getAllUsers" resultMap="BaseResultMap">
-        select userId,userName from users;
+        select userId,userName from users
     </select>
 </mapper>
 

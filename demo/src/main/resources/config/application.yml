@@ -7,11 +7,11 @@ spring:
     name: dome
 # springboot数据库连接配置 begin
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT%2B8
     username: root
     password: root
     # 调用mysql包（高版本路径回不一样可以根据日志提醒跟换）
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     # springboot 2.0 后自带的hikari数据库连接池
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -35,7 +35,7 @@ swagger:
   description: "${spring.application.name} by test"
   version: "0.0.1"
   # swagger扫描包
-  basePackage: "com.hcycom"
+  basePackage: "com.xi.demo.controller"
 
 
 

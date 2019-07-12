@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -30,7 +31,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/api")
 @Api(value = "demo测试接口", description ="demo测试接口相关类")
-public class Index {
+public class DomeController {
 
     @Resource
     UsersMapper usersMapper;
@@ -47,18 +48,19 @@ public class Index {
     }
 
     @RequestMapping(value = "/getUserCount",method = RequestMethod.GET)
+    @ApiOperation(value="数据库查询测试", notes="测试数据库查询返回是否正常")
     public String getUserCount(){
         int i = usersMapper.getUserCount();
         return "用户表用户数量为："+i;
     }
-    @ApiOperation(value = "分页示例代码", notes = "分页示例代码")
-    @RequestMapping(value = "getPageHelper", method = RequestMethod.GET)
+    @ApiOperation(value = "数据库查询分页测试", notes = "测试数据库查询分页返回是否正常")
+    @RequestMapping(value = "getAllUsers", method = RequestMethod.GET)
     @ApiImplicitParams({
             @ApiImplicitParam(name = "ispage", value = "是否使用分页", required = true, dataType = "boolean", paramType = "query"),
             @ApiImplicitParam(name = "pageNum", value = "查询页数", required = false, dataType = "int", paramType = "query"),
             @ApiImplicitParam(name = "pageSize", value = "每页条数", required = false, dataType = "int", paramType = "query"),
     })
-    public JSONObject getPageHelper(@RequestParam(name = "ispage") boolean ispage,
+    public JSONObject getAllUsers(@RequestParam(name = "ispage") boolean ispage,
                                     @RequestParam(name = "pageNum", required = false) Integer pageNum,
                                     @RequestParam(name = "pageSize", required = false) Integer pageSize)
     {
