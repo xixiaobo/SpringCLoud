@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xi.demo.mapper.UsersMapper">
+    <!--数据库与实体类的映射关系-->
+    <resultMap id="BaseResultMap" type="com.xi.demo.bean.Users">
+        <result column="userId" property="userId" jdbcType="INTEGER"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="getAllUsers" resultMap="BaseResultMap">
+        select userId,userName from users;
+    </select>
+</mapper>
+

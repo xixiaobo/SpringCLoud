@@ -1,0 +1,54 @@
+server:
+  port: 8080
+
+spring:
+  # 项目服务名，注册中心以及其他微服务识别名称，要与配置中心SVN上传文件保持文件名相同
+  application:
+    name: dome
+# springboot数据库连接配置 begin
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: root
+    # 调用mysql包（高版本路径回不一样可以根据日志提醒跟换）
+    driver-class-name: com.mysql.jdbc.Driver
+    # springboot 2.0 后自带的hikari数据库连接池
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 15
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-init-sql: select 1
+# springboot数据库连接配置 end
+  #彩色日志
+  output:
+    ansi:
+      enabled: always
+
+# 自定义的属性值 用于swagger配置类使用
+swagger:
+  title: "${spring.application.name} API"
+  description: "${spring.application.name} by test"
+  version: "0.0.1"
+  # swagger扫描包
+  basePackage: "com.hcycom"
+
+
+
+# mybatis配置 start
+  # 需包：mybatis-spring-boot-starter
+mybatis:
+  # 配置mybatis分页（需要导入包：pagehelper）
+  config-location: classpath:config/mybatis_config.xml
+  # mybatis sql命令XML文件扫描地址
+  mapper-locations: classpath:mapper/*.xml
+# mybatis配置 end
+
+
+# 配置项目log日志配置文件地址
+logging:
+  config: classpath:config/logback-spring.xml
